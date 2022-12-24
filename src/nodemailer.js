@@ -17,7 +17,7 @@ export const sender = async (name, phone, email, content) => {
     // I have to send two emails, one to the sender to confirm that I've recived the msg and other to me to auto notify me xD
 
     // Confirm email
-    await transporter.sendMail({
+    const emailC = await transporter.sendMail({
         from: `Jose Mª Pahino <${process.env.MAIL_NAME}>`, // my personal address,
         to: email,
         subject: "Email recieved!",
@@ -25,10 +25,16 @@ export const sender = async (name, phone, email, content) => {
     });
 
     // Auto notify email
-    await transporter.sendMail({
+    const emailN = await transporter.sendMail({
         from: `Jose Maria Pahino <${process.env.MAIL_NAME}>`, // sender address,
-        to: process.env.PERSONAL_MAIL,
+        to: "chemokita13@gmail.com",
         subject: "Someone has contacted you!",
         html: `<ul><li>name: ${name}</li><li>phone: ${phone}</li><li>email: ${email}</li><li>content: ${content}</li></ul>`,
     });
+
+    if (emailC.response.startsWith("2") && emailN.response.startsWith("2")) {
+        return { statusCode: 200, status: "OK" };
+    } else {
+        return { statusCode: 400, status: "Error" };
+    }
 };
