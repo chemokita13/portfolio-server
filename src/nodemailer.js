@@ -29,6 +29,6 @@ export const sender = async (name, phone, email, content) => {
         from: `Jose Maria Pahino <${process.env.MAIL_NAME}>`, // sender address,
         to: process.env.PERSONAL_MAIL,
         subject: "Someone has contacted you!",
-        html: `<ul><li>name: ${name}</li><li>phone:${phone}</li><li>email: ${email}</li><li>content: ${content}</li></ul>`,
+        html: `<ul><li>name: ${name}</li><li>phone: ${phone}</li><li>email: ${email}</li><li>content: ${content}</li></ul>`,
     });
 };
