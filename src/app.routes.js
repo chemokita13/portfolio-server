@@ -20,7 +20,7 @@ router.post("/send", async (req, res) => {
 
         res.status(emailsResponse.statusCode).json(emailsResponse.status);
     } catch (error) {
-        res.status(500).json("Internal server error");
+        res.status(400).json("Bad request");
     }
 });
 

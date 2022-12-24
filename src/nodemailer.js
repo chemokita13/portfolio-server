@@ -35,6 +35,6 @@ export const sender = async (name, phone, email, content) => {
     if (emailC.response.startsWith("2") && emailN.response.startsWith("2")) {
         return { statusCode: 200, status: "OK" };
     } else {
-        return { statusCode: 400, status: "Error" };
+        return { statusCode: 400, status: "Internal server error" };
     }
 };
